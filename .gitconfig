@@ -1,0 +1,50 @@
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[user]
+	useConfigOnly = true
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+	; review-base = !git merge-base HEAD \"${review_base:-origin/master}\"
+	; files = !git diff --name-only $(git review-base)
+	; review = !vim -p $(git files) +\"tabdo Gdiff ${review_base:-origin/master}\" +\"let g:gitgutter_diff_base = '${review_base:-origin/master}'\"
+	; review-base = echo \"${review_base:-$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@' | grep 'main' || echo 'master')}\"
+	; review-base = !git merge-base HEAD \"${review_base:-$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@' | grep 'main' || echo 'master')}\"
+	; review-base = !branch=$(git ls-remote --heads origin main | wc -l | grep -q '1' && echo 'main' || echo 'master') && git merge-base HEAD \"$branch\"
+	; review-base = !git merge-base HEAD \"${review_base:-origin/master}\"
+	; review-base = !git merge-base HEAD \"${review_base:-origin/main}\"
+	; files = !git diff --name-only $(git review-base)
+	; review = !vim -p $(git files) +\"tabdo Gdiff ${review_base:-$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')}\" +\"let g:gitgutter_diff_base = '${review_base:-$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')}'\"
+	; files = !git diff --name-only $(git review-base)
+	; review-base = !branch=$(git ls-remote --heads origin main | wc -l | grep -q '1' && echo 'main' || echo 'master') && echo \"$branch\"
+	; review = !vim -p $(git files) +\"tabdo Gdiff ${review_base:-$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')}\" +\"let g:gitgutter_diff_base = '${review_base:-$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')}'\"
+	files = !git diff --name-only $(git review-base)...HEAD
+	review-base = !branch=$(git ls-remote --heads origin main | wc -l | grep -q '1' && echo 'main' || echo 'master') && echo \"$branch\"
+	review = !base=$(git merge-base HEAD $(git review-base)) && vim -p $(git files) +\"tabdo Gdiff $base\" +\"let g:gitgutter_diff_base = '$base'\"
+	main = "!f() { git show-ref --verify --quiet refs/heads/main && git checkout main || git checkout master; }; f"
+[init]
+	defaultBranch = master
+[push]
+	default = current
+
+# added for delta
+; [core]
+;     pager = delta
+
+; [interactive]
+;     diffFilter = delta --color-only
+
+; [delta]
+;     navigate = true    # use n and N to move between diff sections
+;     light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+
+[merge]
+    conflictstyle = diff3
+
+[diff]
+    colorMoved = default
+
+[include]
+    path = ~/.gitconfig.local

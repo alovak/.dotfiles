@@ -1,13 +1,17 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
     set -U fish_greeting "🐟"
-    rbenv init - fish | source
+
+    # Init rbenv only if it's installed
+    if command -v rbenv >/dev/null 2>&1
+	    rbenv init - fish | source
+    end
 end
 
 function vi
 	switch (uname)
 		case Linux
-			vim $argv
+			command vim $argv
 		case Darwin
 			mvim -v $argv
 	end
@@ -16,7 +20,7 @@ end
 function vim
 	switch (uname)
 		case Linux
-			vim $argv
+			command vim $argv
 		case Darwin
 			mvim -v $argv
 	end

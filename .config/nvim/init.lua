@@ -6,6 +6,11 @@ vim.cmd [[source ~/.config/nvim/vimrc]]
 require("init")
 
 vim.opt.termguicolors = true
-vim.cmd.colorscheme('catppuccin')
--- vim.cmd.colorscheme('tokyonight')
 
+-- Set the color scheme.
+-- vim.api.nvim_set_option("background", "light")
+-- vim.cmd("colorscheme onehalf-lush")
+
+-- Set the dark colorscheme
+vim.api.nvim_set_option("background", "dark")
+vim.cmd("colorscheme onehalf-lush-dark")

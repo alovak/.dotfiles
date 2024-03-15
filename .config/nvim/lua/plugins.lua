@@ -19,8 +19,15 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-  {'folke/tokyonight.nvim'},
-  {'catppuccin/nvim', name = "catppuccin", priority = 1000 },
+  {
+	  "CodeGradox/onehalf-lush",
+	  lazy = false,
+	  priority = 1000,
+	  config = function()
+		  vim.api.nvim_set_option("background", "dark")
+		  vim.cmd("colorscheme onehalf-lush")
+	  end
+  },
   {'tpope/vim-vinegar'},
   {'tpope/vim-unimpaired'},
   {'tpope/vim-surround'},
@@ -39,42 +46,11 @@ require('lazy').setup({
 	  "nvim-telescope/telescope-file-browser.nvim",
 	  dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
   },
+  {'neovim/nvim-lspconfig'},
+  {
+	  "nvim-treesitter/nvim-treesitter",
+	  build = ":TSUpdate",
+  },
 })
 
 require("tmux").setup()
-
-require("catppuccin").setup({
-    flavour = "mocha", -- latte, frappe, macchiato, mocha
-    color_overrides = {
-	    mocha = {
-		    base = "#282c34",
-		    -- blue = "#61afef",
-		    yellow = "#e5c07b",
-		    green = "#98c379",
-		    red = "#e06c75",
-		    -- text = "#b5c1f1",
-		    text = "#dcdfe4",
-
-		    rosewater = "#efc9c2",
-		    flamingo = "#ebb2b2",
-		    pink = "#f2a7de",
-		    mauve = "#b889f4",
-		    maroon = "#ea838c",
-		    peach = "#f39967",
-		    teal = "#78cec1",
-		    sky = "#91d7e3",
-		    sapphire = "#68bae0",
-		    lavender = "#a0a8f6",
-		    subtext1 = "#a6b0d8",
-		    subtext0 = "#959ec2",
-		    overlay2 = "#848cad",
-		    overlay1 = "#717997",
-		    overlay0 = "#63677f",
-		    surface2 = "#505469",
-		    surface1 = "#3e4255",
-		    surface0 = "#2c2f40",
-		    mantle = "#141620",
-		    crust = "#0e0f16",
-	    },
-    },
-})

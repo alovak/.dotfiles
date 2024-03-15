@@ -1,0 +1,56 @@
+" put unnamed register * to clipboard
+"set clipboard=unnamed
+
+" Enable search-related options
+set hlsearch is scs
+set relativenumber
+set nowrap
+set noswapfile
+
+" allow to hide modified buffers when open new file in window
+set hidden
+
+" let last window to always have a status line
+set laststatus=2
+
+" map <Left> <C-W><C-H>
+" map <Right> <C-W><C-L>
+" map <Up> <C-W><C-K>
+" map <Down> <C-W><C-J>
+
+" nmap <C-h> <C-W>h
+" nmap <C-l> <C-W>l
+" nmap <C-k> <C-W>k
+" nmap <C-j> <C-W>j
+" nnoremap <C-h> <C-w>h
+" nnoremap <C-j> <C-w>j
+" nnoremap <C-k> <C-w>k
+" nnoremap <C-l> <C-w>l
+nmap <silent> <C-k> :wincmd k<CR>
+nmap <silent> <C-j> :wincmd j<CR>
+nmap <silent> <C-h> :wincmd h<CR>
+nmap <silent> <C-l> :wincmd l<CR>
+
+" mappings
+
+" delete buffer
+nmap d. :bdelete<CR>
+" yank all buffer
+nmap ya :%y *<cr>
+" edit vimrc
+nmap cv :e ~/.config/nvim/vimrc<cr>
+" yank current file name
+nmap y% :let @*=expand("%")<CR>
+" yank current file path
+nmap yp :let @*=expand("%:p")<CR>
+
+map <leader>s :w!<cr>
+map <leader>n :nohlsearch<cr>
+map <leader>gs :Git<cr>
+
+nnoremap <expr> vp '`[' . strpart(getregtype(), 0, 1) . '`]'
+
+set ruler
+set number
+set noshowmatch
+set wildignore+=.DS_Store

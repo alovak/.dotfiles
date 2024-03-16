@@ -13,23 +13,12 @@ set hidden
 " let last window to always have a status line
 set laststatus=2
 
-" map <Left> <C-W><C-H>
-" map <Right> <C-W><C-L>
-" map <Up> <C-W><C-K>
-" map <Down> <C-W><C-J>
+set termguicolors
 
-" nmap <C-h> <C-W>h
-" nmap <C-l> <C-W>l
-" nmap <C-k> <C-W>k
-" nmap <C-j> <C-W>j
-" nnoremap <C-h> <C-w>h
-" nnoremap <C-j> <C-w>j
-" nnoremap <C-k> <C-w>k
-" nnoremap <C-l> <C-w>l
-nmap <silent> <C-k> :wincmd k<CR>
-nmap <silent> <C-j> :wincmd j<CR>
-nmap <silent> <C-h> :wincmd h<CR>
-nmap <silent> <C-l> :wincmd l<CR>
+" nmap <silent> <C-k> :wincmd k<CR>
+" nmap <silent> <C-j> :wincmd j<CR>
+" nmap <silent> <C-h> :wincmd h<CR>
+" nmap <silent> <C-l> :wincmd l<CR>
 
 " mappings
 
@@ -54,3 +43,8 @@ set ruler
 set number
 set noshowmatch
 set wildignore+=.DS_Store
+
+imap <silent><script><expr> <C-e> copilot#Accept("\<CR>")
+imap <silent><script><expr> <C-w> copilot#AcceptWord()
+imap <silent><script><expr> <C-]> copilot#Next()<CR>
+

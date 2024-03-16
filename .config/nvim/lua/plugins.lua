@@ -35,22 +35,22 @@ require('lazy').setup({
   {'tpope/vim-commentary'},
   {'tpope/vim-fugitive'},
   {'tpope/vim-git'},
-  {'/tpope/vim-abolish'},
+  {'tpope/vim-abolish'},
+  {'github/copilot.vim'},
   {'AndrewRadev/splitjoin.vim'},
-  {'aserowy/tmux.nvim'},
+  {'alexghergh/nvim-tmux-navigation'},
   {
 	  'nvim-telescope/telescope.nvim', tag = '0.1.6',
 	  dependencies = { 'nvim-lua/plenary.nvim' }
   },
-  {
-	  "nvim-telescope/telescope-file-browser.nvim",
-	  dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
-  },
+  -- {
+	  -- "nvim-telescope/telescope-file-browser.nvim",
+	  -- dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+  -- },
   {'neovim/nvim-lspconfig'},
   {
 	  "nvim-treesitter/nvim-treesitter",
 	  build = ":TSUpdate",
   },
+  {'EtiamNullam/vim-todotxt-syntax'},
 })
-
-require("tmux").setup()

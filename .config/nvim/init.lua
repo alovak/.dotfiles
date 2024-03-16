@@ -2,7 +2,7 @@ vim.g.mapleader = ","
 vim.api.nvim_set_option("clipboard","unnamed") 
 
 
-require("init")
+require("plugins")
 
 vim.cmd [[source ~/.config/nvim/vimrc]]
 

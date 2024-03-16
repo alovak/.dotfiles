@@ -6,6 +6,7 @@ set hlsearch is scs
 set relativenumber
 set nowrap
 set noswapfile
+set scrolloff=3
 
 " allow to hide modified buffers when open new file in window
 set hidden

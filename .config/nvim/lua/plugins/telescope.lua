@@ -1,7 +1,7 @@
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<C-p>', builtin.find_files, {})
-vim.keymap.set('n', '<leader>f', builtin.find_files, {})
-vim.keymap.set('n', '<leader>r', function() builtin.find_files({ cwd = vim.fn.expand('%:p:h') }) end)
+-- vim.keymap.set('n', '<leader>f', builtin.find_files, {})
+-- vim.keymap.set('n', '<leader>r', function() builtin.find_files({ cwd = vim.fn.expand('%:p:h') }) end)
 vim.keymap.set('n', '<leader>g', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>th', builtin.help_tags, {})
 vim.keymap.set('n', '<leader>co', builtin.quickfix, {})
@@ -9,8 +9,10 @@ vim.keymap.set('n', '<leader>b', builtin.buffers, {})
 
 local actions = require "telescope.actions"
 local action_layout = require("telescope.actions.layout")
+local fb_actions = require "telescope._extensions.file_browser.actions"
 require("telescope").setup {
 	defaults = {
+		scroll_strategy = "limit",
 		-- layout
 		layout_strategy = "bottom_pane",
 		results_title = "",
@@ -47,24 +49,35 @@ require("telescope").setup {
 		}
 	},
 	extensions = {
-		-- file_browser = {
-		-- 	-- theme = "ivy",
-		-- 	-- disables netrw and use telescope-file-browser in its place
-		-- 	hijack_netrw = true,
-		-- 	display_stat = false,
-		-- 	mappings = {
-		-- 		["i"] = {
-		-- 			-- your custom insert mode mappings
-		-- 		},
-		-- 		["n"] = {
-		-- 			-- your custom normal mode mappings
-		-- 		},
-		-- 	},
-		-- },
+		file_browser = {
+			-- theme = "ivy",
+			-- disables netrw and use telescope-file-browser in its place
+			-- grouped = true,
+			hijack_netrw = true,
+			display_stat = false,
+			disable_devicons = true,
+			dir_icon = "",
+			git_status = false,
+			-- hidden = true,
+			respect_gitignore = false,
+			hide_parent_dir = true,
+			prompt_path = true,
+			mappings = {
+				["i"] = {
+					["<A-c>"] = fb_actions.create,
+					["<C-w>"] = fb_actions.goto_parent_dir,
+					-- your custom insert mode mappings
+				},
+				["n"] = {
+					-- your custom normal mode mappings
+				},
+			},
+		},
 	},
 }
 
 
--- require("telescope").load_extension "file_browser"
--- local filebrowser = require "telescope".extensions.file_browser
--- vim.keymap.set('n', '<leader>e', filebrowser.file_browser, {})
+require("telescope").load_extension "file_browser"
+local filebrowser = require "telescope".extensions.file_browser
+vim.keymap.set('n', '<leader>r', function() filebrowser.file_browser({ path = vim.fn.expand('%:p:h') }) end)
+vim.keymap.set('n', '<leader>f', filebrowser.file_browser, {})

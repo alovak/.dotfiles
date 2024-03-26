@@ -33,6 +33,9 @@ require("telescope").setup {
 				["<c-o>"] = actions.file_split,
 				["<c-v>"] = actions.file_vsplit,
 				["<c-i>"] = action_layout.toggle_preview,
+
+				["<C-j>"] = actions.move_selection_next,
+				["<C-k>"] = actions.move_selection_previous,
 			},
 			n = {
 				["<c-i>"] = action_layout.toggle_preview,
@@ -41,6 +44,8 @@ require("telescope").setup {
 	},
 	pickers = {
 		buffers = {
+			ignore_current_buffer = true,
+			sort_mru = true,
 			mappings = {
 				i = {
 					["<c-d>"] = actions.delete_buffer + actions.move_to_top,
@@ -64,8 +69,11 @@ require("telescope").setup {
 			prompt_path = true,
 			mappings = {
 				["i"] = {
-					["<A-c>"] = fb_actions.create,
+					["<C-e>"] = fb_actions.create_from_prompt,
 					["<C-w>"] = fb_actions.goto_parent_dir,
+					["<C-o>"] = actions.file_split,
+					["<C-v>"] = actions.file_vsplit,
+
 					-- your custom insert mode mappings
 				},
 				["n"] = {

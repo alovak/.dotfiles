@@ -50,10 +50,21 @@ require('lazy').setup({
 	  "nvim-telescope/telescope-file-browser.nvim",
 	  dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
   },
-  {'neovim/nvim-lspconfig'},
   {
 	  "nvim-treesitter/nvim-treesitter",
 	  build = ":TSUpdate",
   },
   {'EtiamNullam/vim-todotxt-syntax'},
+  -- {'/fatih/vim-go'},
+  {'williamboman/mason.nvim'},
+  {'williamboman/mason-lspconfig.nvim'},
+  {'neovim/nvim-lspconfig'},
+
+  -- Autocompletion
+  -- {'hrsh7th/nvim-cmp'},
+  -- {'hrsh7th/cmp-buffer'},
+  -- {'hrsh7th/cmp-path'},
+  -- {'saadparwaiz1/cmp_luasnip'},
+  -- {'hrsh7th/cmp-nvim-lsp'},
+  -- {'hrsh7th/cmp-nvim-lua'},
 })

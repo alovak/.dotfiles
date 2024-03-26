@@ -1,10 +1,11 @@
 require("lazy-setup")
 require("plugins/telescope")
-require("plugins/lsp")
 require("plugins/tree-sitter")
 require("plugins/tmux")
+require("plugins/mason")
+require("plugins/lsp")
+require("plugins/gitsigns")
 
-require('gitsigns').setup()
 require('treesitter-context').setup({
   enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
   max_lines = 1, -- How many lines the window should span. Values <= 0 mean no limit.

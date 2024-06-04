@@ -6,6 +6,10 @@ vim.keymap.set('n', '<leader>g', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>th', builtin.help_tags, {})
 vim.keymap.set('n', '<leader>co', builtin.quickfix, {})
 vim.keymap.set('n', '<leader>b', builtin.buffers, {})
+vim.keymap.set('n', '<leader>de', function() builtin.lsp_document_symbols({
+	symbol_width = 50,
+	-- symbols = "method",
+}) end, {})
 
 local actions = require "telescope.actions"
 local action_layout = require("telescope.actions.layout")
@@ -29,28 +33,42 @@ require("telescope").setup {
 
 		mappings = {
 			i = {
-				-- ["<esc>"] = actions.close,
 				["<c-o>"] = actions.file_split,
 				["<c-v>"] = actions.file_vsplit,
 				["<c-i>"] = action_layout.toggle_preview,
-
 				["<C-j>"] = actions.move_selection_next,
 				["<C-k>"] = actions.move_selection_previous,
+				["<C-n>"] = actions.move_selection_next,
+				["<C-p>"] = actions.move_selection_previous,
+				["<C-u>"] = actions.results_scrolling_up,
+				["<C-d>"] = actions.results_scrolling_down,
 			},
 			n = {
+				["<c-o>"] = actions.file_split,
+				["<c-v>"] = actions.file_vsplit,
 				["<c-i>"] = action_layout.toggle_preview,
+				["<C-j>"] = actions.move_selection_next,
+				["<C-k>"] = actions.move_selection_previous,
+				["<C-n>"] = actions.move_selection_next,
+				["<C-p>"] = actions.move_selection_previous,
+				["<C-u>"] = actions.results_scrolling_up,
+				["<C-d>"] = actions.results_scrolling_down,
 			},
 		},
 	},
 	pickers = {
 		buffers = {
-			ignore_current_buffer = true,
+			ignore_current_buffer = false,
 			sort_mru = true,
 			mappings = {
 				i = {
 					["<c-d>"] = actions.delete_buffer + actions.move_to_top,
 				}
 			}
+		},
+		quickfix = {
+			trim_text = true,
+			show_line = false,
 		}
 	},
 	extensions = {
@@ -58,7 +76,7 @@ require("telescope").setup {
 			-- theme = "ivy",
 			-- disables netrw and use telescope-file-browser in its place
 			-- grouped = true,
-			hijack_netrw = true,
+			hijack_netrw = false,
 			display_stat = false,
 			disable_devicons = true,
 			dir_icon = "",

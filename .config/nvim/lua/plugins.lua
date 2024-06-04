@@ -5,6 +5,7 @@ require("plugins/tmux")
 require("plugins/mason")
 require("plugins/lsp")
 require("plugins/gitsigns")
+-- require("plugins/cmp")
 
 require('treesitter-context').setup({
   enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
@@ -20,3 +21,5 @@ require('treesitter-context').setup({
   zindex = 20, -- The Z-index of the context window
   on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
 })
+
+require("fidget").setup()

@@ -38,8 +38,9 @@ map <leader>s :w!<cr>
 map <leader>n :nohlsearch<cr>
 map <leader>gs :Git<cr>
 map <leader>gt :TagbarToggle<cr>
+map <leader>gd :DBUIToggle<cr>
 
-nnoremap <expr> vp '`[' . strpart(getregtype(), 0, 1) . '`]'
+nnoremap <expr> <leader>p '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 set ruler
 set number
@@ -47,6 +48,8 @@ set noshowmatch
 set wildignore+=.DS_Store
 
 imap <silent><script><expr> <C-e> copilot#Accept("\<CR>")
-imap <silent><script><expr> <C-w> copilot#AcceptWord()
+" imap <silent><script><expr> <C-w> copilot#AcceptWord()
 imap <silent><script><expr> <C-]> copilot#Next()<CR>
 
+autocmd FileType mysql setlocal commentstring=--\ %s
+autocmd FileType dbout setlocal nofoldenable

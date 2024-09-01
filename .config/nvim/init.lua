@@ -25,3 +25,5 @@ function ToggleBackground()
 		vim.cmd("colorscheme onehalf-lush-dark")
 	end
 end
+
+vim.o.statusline = "%{fnamemodify(getcwd(),':t')} • %<%f %h%m%r%=%-14.(%l,%c%V%) %P"
